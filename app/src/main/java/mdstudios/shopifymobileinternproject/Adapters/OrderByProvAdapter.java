@@ -50,7 +50,7 @@ public class OrderByProvAdapter extends RecyclerView.Adapter<ViewHolder> {
 
             //adds a sublist of elements from dividerIndicies(i) to dividerIndicies(i+1) or the end of the orders list.
             List<Order> subList = orders.subList(dividerIndicies.get(i),
-                    (i + 1 < dividerIndicies.size() ? dividerIndicies.get(i + 1) : orders.size() - 1));
+                    (i + 1 < dividerIndicies.size() ? dividerIndicies.get(i + 1) : orders.size()));
 
             data.addAll(DataWrapper.wrapInformation(subList));
         }
