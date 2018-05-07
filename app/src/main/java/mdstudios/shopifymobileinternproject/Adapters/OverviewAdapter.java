@@ -25,10 +25,10 @@ public class OverviewAdapter extends RecyclerView.Adapter<ViewHolder> {
     private final String HEADING_PROVINCE = "Order by Province";
     private final String HEADING_YEAR = "Order by Year";
 
-    private int TYPE_YEAR = 98;
-    private int TYPE_DIVIDER = 99;
-    private int TYPE_PROV = 100;
-    private int TYPE_ORDER = 101;
+    private final int TYPE_YEAR = 98;
+    private final int TYPE_DIVIDER = 99;
+    private final int TYPE_PROV = 100;
+    private final int TYPE_ORDER = 101;
 
     private OverviewFragment.OnFragmentInteractionListener mListener;
 

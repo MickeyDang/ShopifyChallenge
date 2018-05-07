@@ -37,6 +37,10 @@ public class RestClient {
 
                 OrderWrapper wrapper = response.body();
 
+                //null safety check
+                if (wrapper == null || wrapper.getList() == null)
+                    return;
+
                 //assume some data may be incomplete. Filter null data
                 List<Order> orders = new ArrayList<>();
 

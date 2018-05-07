@@ -7,6 +7,7 @@ public class LineItem {
     private String vendor;
 
     public LineItem() {
+        id = 0;
         title = "";
         vendor = "";
     }

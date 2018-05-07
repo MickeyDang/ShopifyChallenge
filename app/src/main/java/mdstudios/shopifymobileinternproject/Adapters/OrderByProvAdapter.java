@@ -14,13 +14,16 @@ import java.util.List;
 import mdstudios.shopifymobileinternproject.Models.DataWrapper;
 import mdstudios.shopifymobileinternproject.Models.Order;
 import mdstudios.shopifymobileinternproject.R;
+import mdstudios.shopifymobileinternproject.ViewHolders.DividerViewHolder;
+import mdstudios.shopifymobileinternproject.ViewHolders.OrderViewHolder;
+import mdstudios.shopifymobileinternproject.ViewHolders.ViewHolder;
 
-public class OrderByProvAdapter extends RecyclerView.Adapter<OrderByProvAdapter.ViewHolder> {
+public class OrderByProvAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     private final String TAG = this.getClass().getSimpleName();
 
-    private int TYPE_DIVIDER = 99;
-    private int TYPE_ORDER = 101;
+    private final int TYPE_DIVIDER = 99;
+    private final int TYPE_ORDER = 101;
 
     private List<DataWrapper> data;
     private List<Integer> dividerIndicies;
@@ -37,7 +40,7 @@ public class OrderByProvAdapter extends RecyclerView.Adapter<OrderByProvAdapter.
 
     private void compileList() {
         if (dividerIndicies.size() != dividers.size()) {
-            Log.e(TAG, "not matching dividers with indicies");
+            Log.e(TAG, "not matching dividers with indices");
             return;
         }
 
@@ -45,7 +48,7 @@ public class OrderByProvAdapter extends RecyclerView.Adapter<OrderByProvAdapter.
 
             data.add(new DataWrapper<String>(dividers.get(i)));
 
-            //adds a sublist of elements until the next element in the divider indices list or the end of the orders list.
+            //adds a sublist of elements from dividerIndicies(i) to dividerIndicies(i+1) or the end of the orders list.
             List<Order> subList = orders.subList(dividerIndicies.get(i),
                     (i + 1 < dividerIndicies.size() ? dividerIndicies.get(i + 1) : orders.size() - 1));
 
@@ -104,59 +107,5 @@ public class OrderByProvAdapter extends RecyclerView.Adapter<OrderByProvAdapter.
     public int getItemCount() {
         return data.size();
     }
-
-    class ViewHolder extends RecyclerView.ViewHolder {
-        public ViewHolder(View view) {
-            super(view);
-        }
-    }
-
-    class DividerViewHolder extends ViewHolder {
-        View v;
-        TextView information;
-
-        public DividerViewHolder(View view) {
-            super(view);
-            v = view;
-            information = view.findViewById(R.id.text);
-        }
-
-        public void onBind(String s) {
-            information.setText(s);
-        }
-    }
-
-    class OrderViewHolder extends ViewHolder {
-
-        TextView nameView;
-        TextView addressView;
-        TextView productView;
-
-        public OrderViewHolder(View view) {
-            super(view);
-            nameView = view.findViewById(R.id.name);
-            addressView = view.findViewById(R.id.address);
-            productView = view.findViewById(R.id.product);
-        }
-
-        public void onBind(Order order) {
-
-            String formattedText = order.getName() + " " + order.getCustomer().getFirstName()
-                    + " " + order.getCustomer().getLastName();
-            nameView.setText(formattedText);
-
-            formattedText = order.getAddress().getCity() + ", "
-                    + order.getAddress().getProvince() + ", "
-                    + order.getAddress().getCountry();
-            addressView.setText(formattedText);
-
-            formattedText = order.getLineItems().get(0).getId() + ": "
-                    + order.getLineItems().get(0).getTitle();
-            productView.setText(formattedText);
-
-        }
-
-    }
-
 
 }

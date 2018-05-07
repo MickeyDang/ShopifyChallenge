@@ -10,7 +10,9 @@ public class Address {
     private String country;
 
     public Address() {
-
+        province = "";
+        city = "";
+        country = "";
     }
 
     public String getCity() {

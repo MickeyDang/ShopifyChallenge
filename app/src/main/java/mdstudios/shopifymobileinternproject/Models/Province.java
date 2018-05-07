@@ -12,7 +12,6 @@ public class Province {
 
     public Province(String name) {
         provinceName = name;
-        count = 0;
         orders = new ArrayList<>();
     }
 

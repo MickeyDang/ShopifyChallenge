@@ -28,8 +28,8 @@ public class MainActivity extends AppCompatActivity implements RestClient.OrderC
     private final String TAG = this.getClass().getSimpleName();
     private final int PERMISSION_RC = 1;
 
+    //hash map of province name to province object
     private HashMap<String, Province> mProvinces = new HashMap<>();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,10 +70,10 @@ public class MainActivity extends AppCompatActivity implements RestClient.OrderC
 
     @Override
     public void onOrderCallback(List<Order> orders) {
-        buildMap(orders);
+        buildHashMap(orders);
     }
 
-    private void buildMap(List<Order> orders) {
+    private void buildHashMap(List<Order> orders) {
         //holds number of orders created in 2017
         int count2017 = 0;
         //holds list of orders created in 2017
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements RestClient.OrderC
 
         for (Order o : orders) {
 
-            //String parse to find year of created order
+            //String parse to find year of created order using time format
             String year = o.getTimeCreation().substring(0, 4);
             if (year.equals("2017")) {
                 count2017++;

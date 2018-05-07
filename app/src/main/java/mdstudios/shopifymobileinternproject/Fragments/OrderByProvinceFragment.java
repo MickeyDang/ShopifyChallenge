@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -90,7 +91,7 @@ public class OrderByProvinceFragment extends Fragment {
 
     //utility functions to alphabetically sort list
     private List<String> sortKeySet(Set<String> unsortedSet) {
-        List<String> list = new ArrayList<>();
+        List<String> list = new LinkedList<>();
         list.addAll(unsortedSet);
 
         for (int i = 0; i < unsortedSet.size(); i++) {
