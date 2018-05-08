@@ -2,6 +2,7 @@ package mdstudios.shopifymobileinternproject.Models;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class OrderWrapper {
@@ -10,7 +11,7 @@ public class OrderWrapper {
     private List<Order> list;
 
     public OrderWrapper() {
-
+        list = new ArrayList<>();
     }
 
     public List<Order> getList() {

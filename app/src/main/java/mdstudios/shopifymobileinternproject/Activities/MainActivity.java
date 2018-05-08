@@ -25,7 +25,6 @@ import mdstudios.shopifymobileinternproject.REST.RestClient;
 public class MainActivity extends AppCompatActivity implements RestClient.OrderCallback<List<Order>>,
         OverviewFragment.OnFragmentInteractionListener {
 
-    private final String TAG = this.getClass().getSimpleName();
     private final int PERMISSION_RC = 1;
 
     //hash map of province name to province object
@@ -90,12 +89,14 @@ public class MainActivity extends AppCompatActivity implements RestClient.OrderC
 
             //increment province count
             String provName = o.getAddress().getProvince();
+            //creates new province if none exists in hash map
             Province province = mProvinces.get(provName) == null ? new Province(provName) : mProvinces.get(provName);
             province.incrimentCount();
             province.getOrders().add(o);
             mProvinces.put(provName, province);
         }
 
+        //start fragment after map completed
         goToFragment(OverviewFragment.newInstance(ordersIn2017, new ArrayList<>(mProvinces.values()), count2017));
     }
 

@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,13 +44,14 @@ public class OrderByProvAdapter extends RecyclerView.Adapter<ViewHolder> {
         }
 
         for (int i = 0; i < dividerIndicies.size(); i++) {
-
+            //adds the appropriate heading before the list of orders
             data.add(new DataWrapper<String>(dividers.get(i)));
 
-            //adds a sublist of elements from dividerIndicies(i) to dividerIndicies(i+1) or the end of the orders list.
+            //creates a sublist of elements from dividerIndicies(i) to dividerIndicies(i+1) or the end of the orders list.
             List<Order> subList = orders.subList(dividerIndicies.get(i),
                     (i + 1 < dividerIndicies.size() ? dividerIndicies.get(i + 1) : orders.size()));
 
+            //adds sublist
             data.addAll(DataWrapper.wrapInformation(subList));
         }
 
@@ -70,6 +70,7 @@ public class OrderByProvAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     private boolean isDivider(int position) {
         for (int i = 0; i < dividerIndicies.size(); i++) {
+            //the position of divider i in the divider list is offset by i compared to the data list
             if (dividerIndicies.get(i) + i == position)
                 return true;
         }

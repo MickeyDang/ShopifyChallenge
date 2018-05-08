@@ -10,5 +10,4 @@ public interface ShopifyDataRequest {
     @GET("admin/orders.json?")
     Call<OrderWrapper> getData(@Query("page") String pageNumber, @Query("access_token") String accessCode);
 
-
 }

@@ -35,13 +35,14 @@ public class OverviewAdapter extends RecyclerView.Adapter<ViewHolder> {
     private int provinceDividerIndex;
     private int yearDividerIndex;
 
-    List<DataWrapper> data;
-    List<Province> provinces;
-    Integer count2017;
-    List<Order> orders;
+    private List<DataWrapper> data;
+    private List<Province> provinces;
+    private Integer count2017;
+    private List<Order> orders;
 
     public OverviewAdapter(OverviewFragment.OnFragmentInteractionListener listener) {
         mListener = listener;
+
         provinceDividerIndex = 0;
         yearDividerIndex = 1;
 
@@ -51,7 +52,6 @@ public class OverviewAdapter extends RecyclerView.Adapter<ViewHolder> {
         count2017 = 0;
     }
 
-    //creating list
     public void setNumOrdersFrom2017(int i) {
         count2017 = i;
     }
@@ -84,7 +84,7 @@ public class OverviewAdapter extends RecyclerView.Adapter<ViewHolder> {
         //page 1 is 50 items max so insertion sort is efficient
         for (int i = 0; i < list.size(); i++) {
             for (int j = i; j > 0; j--) {
-                //condition is true if (j) should be before (j - 1)
+                //condition is true if (j) should be before (j - 1) in alphanumeric
                 if (list.get(j).getProvinceName().compareTo(list.get(j - 1).getProvinceName()) < 0) {
                     swapWithPreceeding(list, j);
                 }

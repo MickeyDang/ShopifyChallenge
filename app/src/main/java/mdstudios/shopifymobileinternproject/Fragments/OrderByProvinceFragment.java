@@ -55,14 +55,15 @@ public class OrderByProvinceFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mAdapter = createAdapterWithSet();
+        mAdapter = createAdapterWithSet(mProvinces);
         mRecyclerView = view.findViewById(R.id.list);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.setAdapter(mAdapter);
 
     }
 
-    private OrderByProvAdapter createAdapterWithSet() {
+    //converts hash map into list of orders and list of dividers and returns adapter with those params
+    private OrderByProvAdapter createAdapterWithSet(HashMap<String, Province> map) {
         List<String> dividerTitle = new ArrayList<>();
 
         //stores the divisions between subOrders in allOrders
@@ -72,12 +73,12 @@ public class OrderByProvinceFragment extends Fragment {
         //first divider is at index 0
         int index = 0;
 
-        for (String key : sortKeySet(mProvinces.keySet())) {
+        for (String key : sortKeySet(map.keySet())) {
             //add key as province name
             dividerTitle.add(key);
 
             //get orders associated with province
-            List<Order> ordersInProv = mProvinces.get(key).getOrders();
+            List<Order> ordersInProv = map.get(key).getOrders();
 
             //increment index of next divider appropriately
             dividerIndicies.add(index);

@@ -45,7 +45,7 @@ public class RestClient {
                 List<Order> orders = new ArrayList<>();
 
                 for (Order order : wrapper.getList()) {
-                    if (order.getAddress() != null && order.getAddress().getProvince() != null && order.getTimeCreation() != null) {
+                    if (assertOrderComplete(order)) {
                         orders.add(order);
                     }
                 }
@@ -58,6 +58,12 @@ public class RestClient {
                 Log.e(TAG, "onFailure " + t.getMessage());
             }
         });
+    }
+
+    private boolean assertOrderComplete(Order order) {
+        //every order should have the following properties
+        return order.getAddress() != null && order.getAddress().getProvince() != null
+                && order.getTimeCreation() != null && order.getCustomer() != null && order.getLineItems() != null;
     }
 
     public interface OrderCallback<T> {
